@@ -12,11 +12,7 @@ describe("Notes with pg", () => {
     beforeAll(async () => {
         connectionString = process.env.DB_URI
         pool = new Pool({ connectionString })
-
-        jest.mock("../models/notesModel", () => {
-            return pool
-        })
-
+        
         await pool.query(`CREATE TABLE notes (
             id SERIAL PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
